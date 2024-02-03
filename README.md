@@ -34,6 +34,10 @@
   - making moviecard
   - using moviecard inside movielist to show list of movies
   - render nowplaying movies,top rated,upcoming, popular 
+  - Integrating GPT Search
+  - Make a Gpt Search Page
+  - Make a searchBar and give background logo
+  - Make the SearchBar Multilingual
 
 
 

@@ -6,7 +6,7 @@ import { auth } from '../utils/Firebase';
 
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import { user_icon } from '../utils/Constants';
+import { Bg_Netflix, user_icon } from '../utils/Constants';
 
 const Login = () => {
  
@@ -95,7 +95,7 @@ const Login = () => {
         <Header/>
 
         <div className='absolute'>
-            <img className=""src="https://assets.nflxext.com/ffe/siteui/vlv3/16006346-87f9-4226-bc25-a1fb346a2b0c/9662d0fd-0547-4665-b887-771617268815/IN-en-20240115-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+            <img className=""src={Bg_Netflix}
              alt="bg_img"/>
         </div>
         <form onSubmit={(e) => e.preventDefault()} className='absolute  p-8 w-3/12 bg-black my-24 mx-auto right-0 left-0  text-white rounded-lg bg-opacity-80'> 
