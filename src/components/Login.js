@@ -3,14 +3,15 @@ import Header from './Header';
 import { validate } from '../utils/FormValidate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { auth } from '../utils/Firebase';
-import { useNavigate } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { user_icon } from '../utils/Constants';
 
 const Login = () => {
  
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
   const[isSignInForm,setSignInForm]= useState(true);
   const[errorMessage,setErrorMessage]= useState(null);
 
@@ -31,31 +32,34 @@ const Login = () => {
         //sign up logic
         createUserWithEmailAndPassword(
           auth,
-          email.current.value, 
-          password.current.value
+          email.current.value, // email pura ek object hai....agar exact email address caahiye to destructure krna prega therefore email.current.value
+          password.current.value // same logic as above for email
         )
           .then((userCredential) => {
             // Signed up 
-          const user = userCredential.user;
-          updateProfile(user,{
-            displayName:name.current.value,photoURL : "https://instagram.faip1-1.fna.fbcdn.net/v/t51.2885-19/312815340_6272129729470391_1654386574351240642_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.faip1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=tNJ99C-rX_4AX_ZJTia&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfB-ghNkYDHX2LvpqBX94U4Rmfd9GVmBNaZvFDE7g7SQLQ&oe=65BCE720&_nc_sid=8b3546"
-
-          })
-          .then(() => {
-            // Profile updated!
-            const {uid, email, displayName, photoURL}= auth.currentUser;
-            dispatch(addUser({uid:uid, email:email, displayName:displayName, photoURL:photoURL}));
-            navigate("/browse");
-            // ...
-          }).catch((error) => {
-            // An error occurred
-            setErrorMessage(error.message);
-            // ...
-          });
+            const user = userCredential.user;
+               // now updating the user profile with his display name and photo, previously while sign up we only got email and userId for saving 
+               updateProfile(user,{
+                 displayName:name.current.value,
+                 photoURL : user_icon
+               })
+                  .then(() => {
+                    // Profile updated!
+                    const {uid, email, displayName, photoURL}= auth.currentUser;
+                    // adding the userinfo to our store
+                    dispatch(addUser({uid:uid, email:email, displayName:displayName, photoURL:photoURL}));
+                     // after sign up navigate to browse page
+                    
+                    // ...
+                  })
+                  .catch((error) => {
+                    // An error occurred
+                    setErrorMessage(error.message);
+                     // ...
+                  });
           
-         // console.log(user);
+              // console.log(user);
           })
-          
           .catch((error) => {
            const errorCode = error.code;
            const errorMessage = error.message;
@@ -65,24 +69,25 @@ const Login = () => {
     else{
       //sign in logic
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    navigate("/browse");
-    //console.log(user);
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    //console.log(errorCode +"-" + errorMessage)
-    setErrorMessage(errorCode +"-" + errorMessage)
-  });
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+          
+             //console.log(user);
+             // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+              //console.log(errorCode +"-" + errorMessage)
+            setErrorMessage(errorCode +"-" + errorMessage)
+        });
 
     }
   }
 
   const toggleSignInForm = () =>{
+    //for toggling bw sign in and sign up button on login page
      setSignInForm(!isSignInForm);
   }
   return (
