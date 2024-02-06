@@ -7,6 +7,7 @@ import useMovieTrailer from '../customHooks/useMovieTrailer';
 const VideoBackground = ({movieId}) => {
     //fetch trailer video
     const trailerVideo = useSelector((store) => store.movies?.trailerVideo)
+    console.log(trailerVideo,"hai kch")
     useMovieTrailer(movieId);
 
   return (

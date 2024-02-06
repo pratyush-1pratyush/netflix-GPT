@@ -38,6 +38,11 @@
   - Make a Gpt Search Page
   - Make a searchBar and give background logo
   - Make the SearchBar Multilingual
+  - calling the GPT api to get the particular typed movie
+  - search the gpt suggestions into TMDB API to fetch the movie information
+  - add the movies information into store 
+  - build the ui of movies suggested by GPT
+  
 
 
 
