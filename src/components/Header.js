@@ -53,15 +53,15 @@ const Header = () => {
   }
   
   return (
-    <div className="flex justify-between w-full absolute px-8 py-2 bg-gradient-to-b from-black z-10 ">
-        <img className='w-48'
+    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+        <img className='w-44 mx-auto md:mx-0'
         src={logo_netflix}
         alt="logo_netflix"/>
 
         
 
        {user &&  (
-         <div className='flex p-2'>
+         <div className='flex p-2 justify-between'>
           { showGptSearch && <select 
             className='p-2 m-2 bg-gray-900 text-white'
             onChange={handleLanguageChange}
@@ -74,12 +74,12 @@ const Header = () => {
           </select>
           }
           <button 
-            className='bg-purple-600 py-2 px-2 mx-4 my-2  text-white rounded-lg' 
+            className='bg-purple-600 py-2 px-4 mx-4 my-2  text-white rounded-lg' 
             onClick={toggleGptSearch}
           >
            {showGptSearch ? "HomePage" : "GPT Search"}
           </button>
-          <img className="h-12 w-12 mt-2"src={user?.photoURL}></img>
+          <img className="hidden md:block h-12 w-12 "src={user?.photoURL}></img>
           <button onClick ={handleSignOut}className='font-bold text-white p-2 '>Sign Out</button>
         </div>)
        }
