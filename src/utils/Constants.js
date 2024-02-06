@@ -6,7 +6,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMGZhNjQ4YWY1ODZlZDRlZmU3NDBiMzZkYzUyMzVjMSIsInN1YiI6IjY1YmJlODE2MmQxZTQwMDE4NDVjNjQ1ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PCFCNPgBhPyltGkd_RSqvvI4JS27hHrPuV06v1I276s'
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMGZhNjQ4YWY1ODZlZDRlZmU3NDBiMzZkYzUyMzVjMSIsInN1YiI6IjY1YmJlODE2MmQxZTQwMDE4NDVjNjQ1ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PCFCNPgBhPyltGkd_RSqvvI4JS27hHrPuV06v1I276s"
     }
   };
 
@@ -20,4 +20,4 @@ export const lang_supported = [
   {identifier:"spanish", name:"Spanish"}
 ]; 
 
-export const openAI_key = "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";
+export const openAI_key = process.env.REACT_APP_openAI_key;
