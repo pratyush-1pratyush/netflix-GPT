@@ -19,3 +19,5 @@ export const lang_supported = [
   {identifier:"hindi", name:"Hindi"},
   {identifier:"spanish", name:"Spanish"}
 ]; 
+
+export const openAI_key = "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";
