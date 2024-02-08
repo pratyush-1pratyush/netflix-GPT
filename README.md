@@ -45,6 +45,7 @@
   - Adding .env file to gitignore
   - Memoization of APIs
   - Made our website responsive
+  - Hosted on vercel
 
 
 
