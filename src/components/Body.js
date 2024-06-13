@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Login from './Login';
 import Browse from './Browse';
 import { createBrowserRouter , RouterProvider} from 'react-router-dom';
-
+import MoviePlayer from './MoviePlayer';
 
 
 const Body = () => {
@@ -15,7 +15,11 @@ const Body = () => {
         {
             path:"/browse",
             element: <Browse/>
-        }
+        },
+        {
+            path:"/player",
+            element:<MoviePlayer/>
+        },
     ]);
 
    

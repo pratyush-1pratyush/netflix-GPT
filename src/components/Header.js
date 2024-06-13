@@ -39,7 +39,7 @@ const Header = () => {
             navigate('/');
         }
     })
-      return unsubscribe;
+      return unsubscribe; // it is a cleanup function
 },[]);
 
 
@@ -62,6 +62,15 @@ const Header = () => {
 
        {user &&  (
          <div className='flex p-2 justify-between'>
+         
+          <button 
+            className='bg-purple-600 py-2 px-4 mx-4 my-2  text-white rounded-lg' 
+            onClick={toggleGptSearch}
+          >
+           {showGptSearch ? "HomePage" : "GPT Search"}
+          </button>
+
+
           { showGptSearch && <select 
             className='p-2 m-2 bg-gray-900 text-white'
             onChange={handleLanguageChange}
@@ -73,13 +82,11 @@ const Header = () => {
               };
           </select>
           }
-          <button 
-            className='bg-purple-600 py-2 px-4 mx-4 my-2  text-white rounded-lg' 
-            onClick={toggleGptSearch}
-          >
-           {showGptSearch ? "HomePage" : "GPT Search"}
-          </button>
+
+
           <img className="hidden md:block h-12 w-12 "src={user?.photoURL}></img>
+
+
           <button onClick ={handleSignOut}className='font-bold text-white p-2 '>Sign Out</button>
         </div>)
        }

@@ -3,7 +3,6 @@ import Header from './Header';
 import { validate } from '../utils/FormValidate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { auth } from '../utils/Firebase';
-
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { Bg_Netflix, user_icon } from '../utils/Constants';
@@ -28,11 +27,12 @@ const Login = () => {
     setErrorMessage(errorMsg);
     if(errorMsg) return;
 
+   // console.log(email.current); -> ye pura input element return krega , so isse hme value nikalna prega
     if(!isSignInForm){
         //sign up logic
         createUserWithEmailAndPassword(
           auth,
-          email.current.value, // email pura ek object hai....agar exact email address caahiye to destructure krna prega therefore email.current.value
+          email.current.value, // email pura ek object hai....and since email is also a useRef variable and ref variable can be accesed through ref.current which gives a element and for current value we use ref.current.value
           password.current.value // same logic as above for email
         )
           .then((userCredential) => {
@@ -45,7 +45,7 @@ const Login = () => {
                })
                   .then(() => {
                     // Profile updated!
-                    const {uid, email, displayName, photoURL}= auth.currentUser;
+                    const {uid, email, displayName, photoURL}= auth.currentUser; // use auth to access the currentuser
                     // adding the userinfo to our store
                     dispatch(addUser({uid:uid, email:email, displayName:displayName, photoURL:photoURL}));
                      // after sign up navigate to browse page
@@ -95,7 +95,7 @@ const Login = () => {
         <Header/>
 
         <div className='absolute'>
-            <img className="h-screen object-cover w-screen"src={Bg_Netflix}
+            <img className=" h-screen object-cover w-screen"src={Bg_Netflix}
              alt="bg_img"/>
         </div>
         <form onSubmit={(e) => e.preventDefault()} 
@@ -103,7 +103,7 @@ const Login = () => {
             
             <h1 className='text-3xl py-1' > {isSignInForm ? "Sign In" : "Sign Up"}</h1>
             
-            {!isSignInForm &&<input 
+            {!isSignInForm &&<input  // if the current state is of signUp form, then only show this name input field
              ref={name}
              className='p-4 my-4 w-full bg-gray-700' 
              type="text"

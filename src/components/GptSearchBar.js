@@ -8,7 +8,7 @@ import { addGptMoviesResults } from '../utils/GptSearchSlice';
 const GptSearchBar = () => {
   const searchText = useRef(null);
   const langkey = useSelector((store) => store.langConfig.lang)
-  console.log(langkey);
+ // console.log(langkey);
   const dispatch = useDispatch();
 
   const callTmdbMovieApi = async(movie) => {
@@ -36,13 +36,13 @@ const GptSearchBar = () => {
       });
 
       const gptMovies =  gptResults?.choices[0]?.message.content.split(",");
-      console.log(gptMovies);
+      //console.log(gptMovies);
 
       const promiseArray = gptMovies.map((movie) => callTmdbMovieApi(movie));
       //[Promise, Promise, Promise, Promise, Promise]
 
       const tmdbResults = await Promise.all(promiseArray);
-      console.log(tmdbResults);
+      //console.log(tmdbResults);
       dispatch(addGptMoviesResults({seachedMovieNames:gptMovies,gptMovieResults:tmdbResults}))
      
     }

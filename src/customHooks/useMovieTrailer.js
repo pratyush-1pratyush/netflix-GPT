@@ -19,11 +19,12 @@ const  useMovieTrailer = (movieId) => {
          API_OPTIONS
          );
          const json = await data.json();
-         console.log(json,"this is json");
+         console.log(json,"this is json now");
  
-         const trailer = json.results.filter((video) => video.name === "Official Trailer");
+         const trailer = json.results.filter((video) => (video.type).includes("Trailer"));
          console.log(trailer,"jo hai yahi trailer hai");
-         dispatch(addTrailerVideo(trailer));
+         const key = trailer[0].key;
+         dispatch(addTrailerVideo(key));
         
         
         

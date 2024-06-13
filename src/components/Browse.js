@@ -8,6 +8,10 @@ import Header from './Header';
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 import appStore from '../utils/appStore';
+import useAiringTodayShows from '../customHooks/useAiringTodayShows';
+import useOnTheAirShows from '../customHooks/useOnTheAirShows';
+import usePopularShows from '../customHooks/usePopularShows';
+import useTopRatedShows from '../customHooks/useTopRatedShows';
 
 
 const Browse = () => {
@@ -17,6 +21,10 @@ const Browse = () => {
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
+ // useAiringTodayShows();
+  //useOnTheAirShows();
+  //usePopularShows();
+  //useTopRatedShows();
   return (
     <div>
       <Header/>
